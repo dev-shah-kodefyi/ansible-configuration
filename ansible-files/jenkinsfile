@@ -4,17 +4,17 @@ node {
 
      
   stage('Git-Checkout') {
-   git 'https://github.com/AbhishekPattnaik04/capstone301-B.git'
+   git 'https://github.com/devops311/ansible-configuration.git'
   }
       
      
-    stage('Jfrog Artifactory download'){
+ stage(' Downloading Jar From Artifactory Locally'){
     def server= Artifactory.server 'Artifactory'
     def downloadSpec = """{
     "files": [
     {
-      "pattern": "Kalingamusic/kalingamusic-0.0.1-SNAPSHOT.war",
-      "target": "templates/"
+      "pattern": "userproject/*.war",
+      "target": "/root/.jenkins/workspace/production-deployment-role/terraform/warstorageprod/"
       
     }
     ]
@@ -30,7 +30,7 @@ stage('test'){sh 'ls -a'}
   }
   
   stage('ansible deploy'){
-  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/capstoneTerraform/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/capstone301 /root/.jenkins/workspace/capstoneAnsible/ansible/web-playbook.yaml -vvvv'
+  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/production-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/capstone301 /root/.jenkins/workspace/capstoneAnsible/ansible/web-playbook.yaml -vvvv'
 }  
 
 notify('Job Completed')   
