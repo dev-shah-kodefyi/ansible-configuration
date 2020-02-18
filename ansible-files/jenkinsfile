@@ -23,7 +23,7 @@ node {
    
 }
 
-stage('test'){sh 'ls -a'}
+
 
 /*
 stage('Geting Ready For Ansible') {
@@ -31,8 +31,8 @@ stage('Geting Ready For Ansible') {
   }
   */
   
-  stage('ansible deploy'){
-  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/terraform-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/key.pem web-playbook.yaml'
+  stage('Ansible Configuration'){
+  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/terraform-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/key.pem  /root/.jenkins/workspace/ansible-deployment-role/ansible-files/web-playbook.yaml'
 }  
 
 notify('Job Completed')   
