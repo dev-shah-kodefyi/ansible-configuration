@@ -25,9 +25,11 @@ node {
 
 stage('test'){sh 'ls -a'}
 
-  stage('Geting Ready For Ansible') {
+/*
+stage('Geting Ready For Ansible') {
   sh label: 'Jenkins', script: "echo '<h1> TASK BUILD ID: ${env.BUILD_DISPLAY_NAME}</h1>' > ansible/index.html"
   }
+  */
   
   stage('ansible deploy'){
   sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/terraform-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/key.pem web-playbook.yaml'
