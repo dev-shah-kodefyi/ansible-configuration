@@ -30,7 +30,7 @@ stage('test'){sh 'ls -a'}
   }
   
   stage('ansible deploy'){
-  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/production-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/mykey.pem web-playbook.yaml'
+  sh label: 'terraform', script: 'ansible-playbook -i /root/.jenkins/workspace/production-deployment-role/terraform/jenkins-ci.ini -u ubuntu --key /root/.ssh/key.pem web-playbook.yaml'
 }  
 
 notify('Job Completed')   
