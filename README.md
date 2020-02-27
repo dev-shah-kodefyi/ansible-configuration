@@ -1,3 +1,3 @@
 # ansible-configuration
 
-For Ansible Configuration
+ Configuration of your application
