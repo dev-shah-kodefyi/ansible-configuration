@@ -1,0 +1,33 @@
+
+
+[web]
+10.128.0.33
+10.128.0.34
+
+
+[db]
+10.128.0.34
+
+[prod]
+10.128.0.[35:40]
+10.128.0.[41:45]
+
+[test]
+10.128.0.34
+10.128.0.33
+
+[python3]
+10.128.0.43
+10.128.0.37
+
+
+
+[datacenter:children]  // datacenter becomes the parent of the other group present and commands can be run against all the group by just calling the parent 
+prod
+test
+db
+web
+
+[datacenter:vars]     // below 2 params will be used by the groups
+ansible_ssh_user=vagrnat  
+ansible_ssh_pass=vagrnat
